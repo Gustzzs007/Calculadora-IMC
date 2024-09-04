@@ -1,20 +1,24 @@
-function calcular(event) {
+document.getElementById('btn').addEventListener('click', function(event) {
     event.preventDefault(); // Evita o envio do formulário e recarregamento da página
 
     // Obtém os valores de peso e altura dos campos de entrada
     var peso = parseFloat(document.getElementById('peso').value);
     var altura = parseFloat(document.getElementById('altura').value);
 
+    // Verifica se os valores são válidos
+    if (isNaN(peso) || isNaN(altura) || altura <= 0) {
+        document.getElementById('resultado').innerHTML = `<br> Por favor, insira valores válidos.`;
+        return;
+    }
+
     // Calcula o IMC
     var imc = peso / (altura * altura);
 
     // Obtém o elemento para exibir o resultado
-    var resultado = document.getElementById('resultado'); // Remove a chave extra aqui
+    var resultado = document.getElementById('resultado');
 
     // Classifica e exibe o resultado com base no IMC calculado
-    if (isNaN(imc)) {
-        resultado.innerHTML = `<br> Por favor, insira valores válidos.`;
-    } else if (imc < 16) {
+    if (imc < 16) {
         resultado.innerHTML = `<br> Seu resultado foi: ${imc.toFixed(3)}<br> Cuidado, você está com baixo peso muito grave!`;
     } else if (imc >= 16 && imc < 17) {
         resultado.innerHTML = `<br> Seu resultado foi: ${imc.toFixed(3)}<br> Cuidado, você está com baixo peso grave!`;
@@ -31,4 +35,4 @@ function calcular(event) {
     } else if (imc >= 40) {
         resultado.innerHTML = `<br> Seu resultado foi: ${imc.toFixed(3)}<br> Cuidado, você está com obesidade grau III (mórbida)!`;
     }
-}
+});

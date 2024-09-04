@@ -9,7 +9,7 @@ function calcular(event) {
     var imc = peso / (altura * altura);
 
     // Obtém o elemento para exibir o resultado
-    var resultado = document.getElementById('resultado');
+    var resultado = document.getElementById('resultado');{
 
     // Classifica e exibe o resultado com base no IMC calculado
     if (imc < 16) {
@@ -29,4 +29,5 @@ function calcular(event) {
     } else if (imc >= 40) {
         resultado.innerHTML = `<br> Seu resultado foi: ${imc.toFixed(3)}<br> Cuidado, você está com obesidade grau III (mórbida)!`;
     }
+}
 }
